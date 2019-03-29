@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="struts" extends="struts-default">
+       <action name="authenticate" method="authenticate" class="basics.LoginAction">
+            <result name="success">/afterSignIn.html</result>
+            
+            <result name = "none">/signin.html</result>
+        </action> 
+        
+         <action name="addUsers" method="addUsers" class="basics.AdminAction">
+            <result  name="success" >signin.html</result>
+            <result name = "error">/signup.html</result>
+        </action>
+        
+        <action name="changePassword" method="changePassword" class="basics.AdminAction">
+            <result  name="success">/index.jsp</result>
+            <result name = "developer">/trainee.jsp?item=6</result>
+             <result name = "manager">/manager.jsp?item=8</result>
+              <result name = "support">/support.jsp?item=3</result>
+               <result name = "admin">/index1.jsp?item=6</result>
+        </action>
+        <action name="changeUserPassword" method="changeUserPassword" class="basics.AdminAction">
+            <result  name="success">/index1.jsp?item=6</result>
+            <result name = "error">/index1.jsp</result>
+        </action>
+        <action name="getUserPassword" method="getPassword" class="basics.AdminAction">
+            <result  name="success">/changepassword.jsp</result>
+            <result name = "error">/index1.jsp</result>
+        </action>
+        <action name="designation" method="setDesignationFields" class="basics.AdminAction">
+            <result name="success" type="redirect">/index1.jsp?item=2</result>
+            <result name = "error">/index1.jsp?item=2</result>
+        </action>
+        
+         <action name="assetname" method="setAssetNameFields" class="basics.TransferAction">
+            <result name="success" type="redirect">/trainee.jsp?item=5</result>
+            <result name = "error">/index1.jsp?item=2</result>
+        </action>
+        
+        <action name="assetname" method="setAssetname" class="basics.RequestAction">
+            <result name="success" type="redirect">/trainee.jsp?item=2</result>
+            <result name = "error">/trainee.jsp?item=2</result>
+        </action>
+          
+         <action name="raiseRequest" method="raiseRequest" class="basics.RequestAction">
+            <result name="SUCCESS" type="redirect"> /afterSignIn.html</result>
+                   
+            <result name = "error">/afterSignIn.html</result>
+        </action> 
+        
+          <action name="pendingRequest" method="pendingRequest" class="basics.RequestAction">
+            <result name="success"> /manager.jsp?item=2</result>         
+            <result name = "error">/trainee.jsp</result>
+        </action> 
+        
+         <action name="viewMyRequest" method="viewMyRequest" class="basics.RequestAction">
+            <result name="success"> /trainee.jsp?item=3</result>         
+            <result name = "error">/manager.jsp?item=4</result>
+           
+        </action> 
+        
+        <action name="view" method="viewUsers" class="basics.AdminAction">
+            <result name="success">/index1.jsp?item=3</result>
+            <result name = "error">/index1.jsp</result>
+        </action>  
+        <action name="edit" method="editUsers" class="basics.AdminAction">
+            <result name="success">/edit.jsp</result>
+            <result name = "error">/view.jsp</result>
+        </action> 
+         <action name="doEditUsers" method="doEditUsers" class="basics.AdminAction">
+            <result name="success" type="redirectAction"> 
+            	<param name="actionName">view</param>
+            </result>
+            <result name = "error">/view</result>
+        </action>
+        <action name="delete" method="deleteUsers" class="basics.AdminAction">
+            <result name="success" type="redirectAction"> 
+            	<param name="actionName">view</param>
+            </result>
+            <result name = "error" type="redirectAction">
+            	<param name="actionName">view</param>
+            </result>
+        </action>
+        
+         <action name="Approve" method="Approve" class="basics.RequestAction">
+            <result name="success" type ="redirectAction">
+            	<param name = "actionName">pendingRequest</param>
+            </result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+        
+         <action name="viewSupportrequest" method="viewSupportrequest" class="basics.RequestAction">
+            <result name="success">/support.jsp?item=1</result>
+            <result name = "error">/manager.jsp</result>
+        </action>    
+        
+           <action name="supportApprove" method="supportApprove" class="basics.RequestAction">
+             <result name="success" type ="redirectAction">
+            	<param name = "actionName">viewSupportrequest</param>
+            </result>
+            <result name = "error">/manager.jsp</result>
+        </action>    
+        
+          <action name="Reject" method="Reject" class="basics.RequestAction">
+            <result name="success">/manager.jsp?item=2</result>
+            <result name = "error">/manager.jsp</result>
+        </action>    
+        
+          <action name="activate" method="activate" class="basics.AdminAction">
+            <result name="success">/index1.jsp?item=4</result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+         
+        <action name="deactivateUser" method="deactivateUser" class="basics.AdminAction">
+            <result name="success" type ="redirectAction">
+            	<param name = "actionName">activate</param>
+            </result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+        
+          <action name="deactivate" method="deactivate" class="basics.AdminAction">
+            <result name="success">/index1.jsp?item=5</result>
+            <result name = "error">/manager.jsp</result>
+        </action>   
+         <action name="activateUser" method="activateUser" class="basics.AdminAction">
+            <result name="success" type ="redirectAction">
+            	<param name = "actionName">deactivate</param>
+            </result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+        
+         <action name="myEmployees" method="myEmployees" class="basics.AdminAction">
+            <result name="success">/manager.jsp?item=7</result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+        
+         <action name="myAssets" method="myAssets" class="model.AssetAction">
+            <result name="developer">/trainee.jsp?item=4</result>
+           <result name="manager">/manager.jsp?item=5</result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+        
+        <action name="assetTransfer" method="assetTransfer" class="model.AssetAction">
+            <result name="developer">/trainee.jsp?item=5</result>
+           <result name="manager">/manager.jsp?item=6</result>
+            <result name = "error">/trainee.jsp</result>
+        </action>  
+        
+        <action name="transfer" method="transfer" class="basics.TransferAction">
+            <result name="developer">/trainee.jsp</result>
+            <result name="manager">/manager.jsp</result>
+            <result name = "error">/trainee.jsp</result>
+        </action>  
+        
+         <action name="EmployeeTransferRequest" method="EmployeeTransferRequest" class="basics.TransferAction">
+            <result name="success">/manager.jsp?item=9</result>
+            <result name = "error">/manager.jsp</result>
+        </action>  
+       
+       <action name="ApproveEmpTransfer" method="ApproveEmpTransfer" class="basics.TransferAction">
+             <result name="success" type ="redirectAction">
+            	<param name = "actionName">EmployeeTransferRequest</param>
+            </result>
+            <result name = "error">/manager.jsp</result>
+        </action>   
+        
+         <action name="RejectEmpTransfer" method="RejectEmpTransfer" class="basics.TransferAction">
+             <result name="success" type ="redirectAction">
+            	<param name = "actionName">EmployeeTransferRequest</param>
+            </result>
+            <result name = "error">/manager.jsp</result>
+        </action> 
+        
+         <action name="viewReport" method="viewReport" class="model.AssetAction">
+            <result name="success">/support.jsp?item=2</result>
+            <result name = "error">/support.jsp</result>
+        </action> 
+        
+        <action name="getManagers" method="getManagers" class="basics.AdminAction">
+            <result name="success">/index1.jsp?item=2</result>
+            <result name = "error">/support.jsp</result>
+        </action> 
+        
+         <action name="logout" method="logout" class="basics.AdminAction">
+            <result name="success">/index.jsp</result>
+            <result name = "error">/index1.jsp</result>
+        </action> 
+        
+    </package>    
+</struts>
